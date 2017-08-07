@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using VCRI.Models
+@model Login
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+        
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+   
+            </div>
+         <div class="navbar-collapse collapse">
+             @{ Login user =(Login) HttpContext.Current.Session["user_d"];}
+                <ul class="nav navbar-nav">
+                    
+                   
+                    @if (@user.role.ToString().Trim().Equals("Admin"))
+                    {
+                        <li>
+                        <div class="dropdown">
+                        <button class="dropbtn">Master</button>
+                            <div class="dropdown-content">
+                         @Html.ActionLink("Trade", "Index", "Trade")
+                         @Html.ActionLink("Formulation", "Index", "Formulation")
+                         @Html.ActionLink("Dosage", "Index", "Dosage")
+                         @Html.ActionLink("User", "ViewUser", "Login")
+                        
+                                </div>
+                            </div>
+                        </li>
+                        
+                    }
+                    <li>@Html.ActionLink("Drug", "Index", "Drug")</li>
+                     <li>@Html.ActionLink("Order", "Index", "Order")</li>
+                    <li>@Html.ActionLink("Stock", "Index", "Stock")</li>
+                    <li>@Html.ActionLink("Transaction", "Index", "Transaction")</li>
+                     <li>@Html.ActionLink("Logout", "Index", "Login")</li>
+                </ul>
+               
+            </div>
+</div>
+<br />
+<br /><br />Employee Page<br /><br /><br />
+<h3>Welcome @user.username,</h3>
+

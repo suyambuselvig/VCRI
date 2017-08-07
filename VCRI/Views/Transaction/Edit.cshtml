@@ -1,0 +1,90 @@
+﻿@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model VCRI.Models.Transaction
+<script type="text/javascript">
+                    $(function () {
+                        $('.datepicker').datepicker({dateFormat:'dd/mm/yy'});
+
+                    });
+                </script>
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Transaction</legend>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.TransactionID)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TransactionID, new { @readonly=true})
+            @Html.ValidationMessageFor(model => model.TransactionID)
+        </div>
+                
+         <div class="editor-label">
+            @Html.LabelFor(m => m.Drug_Code, "Drug Name",new { @class = "col-md-2 control-label" })
+        </div>
+        <div class="editor-field">
+            
+           @Html.DropDownList("drug",new SelectList((System.Collections.IEnumerable) ViewData["drug"],"Drug_Code","Drug_Name"),ViewData["current_drug"])
+                        @Html.ValidationMessageFor(m => m.Drug_Code, "", new { @class = "text-danger" })
+        </div>
+        
+        
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Sold_By)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Sold_By, new { @readonly=true})
+            @Html.ValidationMessageFor(model => model.Sold_By)
+        </div>
+            
+     <div class="editor-label">
+            @Html.LabelFor(model => model.Sold_Datetime)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Sold_Datetime, new { @readonly=true})
+            @Html.ValidationMessageFor(model => model.Sold_Datetime)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sold_By)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Sold_By, new { @readonly=true})
+            @Html.ValidationMessageFor(model => model.Sold_By)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Drug_Count)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Drug_Count)
+            @Html.ValidationMessageFor(model => model.Drug_Count)
+        </div>
+    <div class="editor-label">
+            @Html.LabelFor(model => model.Comment)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Comment)
+            @Html.ValidationMessageFor(model => model.Comment)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BuyerName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BuyerName, new { @readonly=true})
+            @Html.ValidationMessageFor(model => model.BuyerName)
+        </div>
+        
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

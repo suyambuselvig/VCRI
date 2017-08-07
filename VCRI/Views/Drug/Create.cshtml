@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using VCRI.Models
+@model Drug
+   
+
+        <section id="tradeForm">
+            @using (Html.BeginForm("CreateDrug","Drug"))
+            {
+                @Html.AntiForgeryToken()
+                   @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+               <div class="row">
+    
+    <div class="col-md-8">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Drug_Name,"Drug Name", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.Drug_Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Drug_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                 </div>
+ </div>
+                 <div class="row">
+    
+    <div class="col-md-8">
+ 
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Dosage_Code, "Dosage Value",new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.DropDownList("dosage",new SelectList((System.Collections.IEnumerable) ViewData["dosage"],"Dosage_Code","Dosage_Description"),"--Select Value--")
+                        @Html.ValidationMessageFor(m => m.Dosage_Code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+          </div>
+ </div>
+                 <div class="row">
+    
+    <div class="col-md-8">
+ 
+                 <div class="form-group">
+                    @Html.LabelFor(m => m.Formulation_code,"Formulation Name",new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.DropDownList("formula",new SelectList((System.Collections.IEnumerable) ViewData["formula"],"Formulation_code","Formulation_Name"),"--Select Value--")
+                        @Html.ValidationMessageFor(m => m.Formulation_code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+          </div>
+ </div>        
+         <div class="row">
+    
+    <div class="col-md-8">
+                 <div class="form-group">
+                    @Html.LabelFor(m => m.Trade_Code, "Trade Name", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.DropDownList("trade",new SelectList((System.Collections.IEnumerable) ViewData["trade"],"Trade_Code","Trade_Name"),"--Select Value--")
+                        @Html.ValidationMessageFor(m => m.Trade_Code, "", new { @class = "text-danger" })
+                    </div>
+                </div>  
+        </div>
+ </div>          
+                <div class="form-group">
+                    <div  class="col-md-offset-2 col-md-10">
+                        <input id="create" type="submit" value="Create Drug" class="btn btn-default" />
+                    </div>
+                </div>
+                
+        
+            }
+              </section>
+    <div> @Html.ActionLink("Back to List", "Index")</div>

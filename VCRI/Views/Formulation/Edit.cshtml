@@ -1,0 +1,67 @@
+﻿@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model VCRI.Models.Formulation
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Formulation</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Formulation_code)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Formulation_code, new { @readonly=true})
+         
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Formulation_Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Formulation_Name)
+            @Html.ValidationMessageFor(model => model.Formulation_Name)
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.ShortName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ShortName)
+            @Html.ValidationMessageFor(model => model.ShortName)
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Created_By)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Created_By, new { @readonly=true})
+            @Html.ValidationMessageFor(model => model.Created_By)
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Created_Datetime)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Created_Datetime, new { @readonly=true})
+            @Html.ValidationMessageFor(model => model.Created_Datetime)
+        </div>
+        
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

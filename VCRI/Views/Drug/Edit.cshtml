@@ -1,0 +1,75 @@
+﻿@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model VCRI.Models.Drug
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Drug</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Drug_Code)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Drug_Code, new { @readonly=true})
+         
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Drug_Name)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(m => m.Drug_Name, new { @class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Drug_Name, "", new { @class = "text-danger"})
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Dosage_Code, "Dosage Value",new { @class = "col-md-2 control-label" })
+        </div>
+        <div class="editor-field">
+            
+           @Html.DropDownList("dosage",new SelectList((System.Collections.IEnumerable) ViewData["dosage"],"Dosage_Code","Dosage_Description"),ViewData["current_dosage"])
+                        @Html.ValidationMessageFor(m => m.Dosage_Code, "", new { @class = "text-danger" })
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(m => m.Formulation_code,"Formulation Name",new { @class = "col-md-2 control-label" })
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("formula",new SelectList((System.Collections.IEnumerable) ViewData["formula"],"Formulation_code","Formulation_Name"),ViewData["current_formula"])
+                        @Html.ValidationMessageFor(m => m.Formulation_code, "", new { @class = "text-danger" })
+        </div>
+         <div class="editor-label">
+              @Html.LabelFor(m => m.Trade_Code, "Trade Name", new { @class = "col-md-2 control-label" })
+        </div>
+        <div class="editor-field">
+           @Html.DropDownList("trade",new SelectList((System.Collections.IEnumerable) ViewData["trade"],"Trade_Code","Trade_Name"),ViewData["current_trade"])
+                        @Html.ValidationMessageFor(m => m.Trade_Code, "", new { @class = "text-danger" })
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Created_By)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Created_By, new { @readonly=true})
+            @Html.ValidationMessageFor(model => model.Created_By)
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Created_Datetime)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Created_Datetime, new { @readonly=true})
+            @Html.ValidationMessageFor(model => model.Created_Datetime)
+        </div>
+        
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

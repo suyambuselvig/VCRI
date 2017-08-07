@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using VCRI.Models
+@model Stock
+ <script type="text/javascript">
+                    $(function () {
+                        $('.datepicker').datepicker({dateFormat:'dd/mm/yy'});
+
+                    });
+                </script>
+        <section id="tradeForm">
+            @using (Html.BeginForm("CreateStock","Stock"))
+            {
+              
+                @Html.AntiForgeryToken()
+                   @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                 <div class="row">
+    
+    <div class="col-md-8">
+ 
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Drug_Code, "Drug",new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.DropDownList("drug",new SelectList((System.Collections.IEnumerable) ViewData["drug"],"Drug_Code","Drug_Name"),"--Select Value--")
+                        @Html.ValidationMessageFor(m => m.Drug_Code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+          </div>
+ </div>
+            
+        <div class="row">
+    
+    <div class="col-md-8">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Quantity,"Quantity", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Quantity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                 </div>
+ </div>    
+                <div class="row">
+    
+    <div class="col-md-8">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Expiry_Date,"Expiry Date", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.Expiry_Date, new { @class = "datepicker" })
+                        @Html.ValidationMessageFor(m => m.Expiry_Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                 </div>
+ </div>    
+                <div class="row">
+    
+    <div class="col-md-8">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.IsActive,"IsActive", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-6">
+                        @Html.CheckBoxFor(m => m.IsActive, new { @checked="checked" })
+                        @Html.ValidationMessageFor(m => m.IsActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                 </div>
+ </div>    
+                <div class="form-group">
+                    <div  class="col-md-offset-2 col-md-10">
+                        <input id="create" type="submit" value="Create Stock" class="btn btn-default" />
+                    </div>
+                </div>
+                
+        
+            }
+              </section>
+    <div> @Html.ActionLink("Back to List", "Index")</div>

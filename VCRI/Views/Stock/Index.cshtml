@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<VCRI.Models.Stock>
+@using GridMvc.Html;
+   
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+      @if(TempData["msg"]!=null)
+       {
+     <script type="text/javascript">
+         $(function () {
+             alert('@(TempData["msg"])');
+         });
+         </script>
+      }
+
+
+ </head>
+<body>
+    <div style="width:500px;">
+        
+        @Html.Grid(Model).Columns(columns =>
+   {
+
+       columns.Add(c => c.drugname).Titled("Drug Code").Filterable(true);
+       columns.Add(c => c.Expiry_Date).Titled("Expiry Date").Format("{0:dd/MM/yyyy}");
+       columns.Add(c => c.Quantity).Titled("Quantity");
+       columns.Add(c => c.IsActive).Titled("Is Active??");
+       
+       
+       columns.Add().Sanitized(false).Encoded(false).RenderValueAs(o => Html.ActionLink("Delete", "Delete", "Stock", new { drugid = o.Drug_Code.Trim() },new { onclick = "return confirm('Are you sure?');" }).ToHtmlString());
+       columns.Add().Sanitized(false).Encoded(false).RenderValueAs(o => Html.ActionLink("Edit", "Edit", "Stock", new { drugid = o.Drug_Code.Trim() }, new { }).ToHtmlString());
+
+   }).WithPaging(3).Sortable(true)
+    </div>
+     <button value="createstock" name="Create New" onclick="location.href='@Url.Action("Create","Stock")'" >Create New</button>
+     <button value="home" name="home" onclick="location.href='@Url.Action("Index","Employee")'" >Back to Home</button>
+</body>
+</html>
+
+
+       
+         

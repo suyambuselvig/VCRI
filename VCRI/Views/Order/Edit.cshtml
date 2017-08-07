@@ -1,0 +1,63 @@
+﻿@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model VCRI.Models.Order
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Order</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Order_Code)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Order_Code, new { @readonly=true})
+         
+        </div>
+
+        
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Drug_Code, "Drug Name",new { @class = "col-md-2 control-label" })
+        </div>
+        <div class="editor-field">
+            
+           @Html.DropDownList("drug",new SelectList((System.Collections.IEnumerable) ViewData["drug"],"Drug_Code","Drug_Name"),ViewData["current_drug"])
+                        @Html.ValidationMessageFor(m => m.Drug_Code, "", new { @class = "text-danger" })
+        </div>
+        
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Order_Count)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Order_Count)
+            @Html.ValidationMessageFor(model => model.Order_Count)
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Ordered_By)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Ordered_By)
+            @Html.ValidationMessageFor(model => model.Ordered_By)
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Order_Date)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Order_Date, new { @readonly=true})
+            @Html.ValidationMessageFor(model => model.Order_Date)
+        </div>
+        
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

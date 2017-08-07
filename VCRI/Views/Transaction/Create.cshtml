@@ -1,0 +1,86 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using VCRI.Models
+@model Transaction
+<div>
+ <script type="text/javascript">
+                    $(function () {
+                        $('.datepicker').datepicker({dateFormat:'dd/mm/yy'});
+
+                    });
+                </script>
+        <section id="transactForm">
+            @using (Html.BeginForm("CreateTransaction","Transaction"))
+            {
+              
+                @Html.AntiForgeryToken()
+                   @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                 <div class="row">
+    
+    <div class="col-md-8">
+ 
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Drug_Code, "Drug",new { @class = "col-md-2 control-label" })
+                    <div class="col-md-4">
+                        @Html.DropDownList("drug", new SelectList((System.Collections.IEnumerable)ViewData["drug"], "Drug_Code", "Drug_Name"), "--Select Value--", new {ng_model="drugid"})
+                        @Html.ValidationMessageFor(m => m.Drug_Code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+          </div>
+ </div>
+            
+        <div class="row">
+    
+    <div class="col-md-8" ng-controller="myCntrl">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Drug_Count,"Quantity", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-6">
+                        @*@Html.TextBoxFor(m => m.Drug_Count, new { @class = "form-control" ,ng_focus="getformula(drugid)",ng_blur="validatequantity()",ng_model="qty"}) {{formulaname}}  <b>Available Count : {{count}}</b>*@
+                        @Html.TextBoxFor(m => m.Drug_Count, new { @class = "form-control",  ng_model = "qty" }) {{formulaname}}  @*<b>Available Count : {{count}}</b>*@
+                        @Html.ValidationMessageFor(m => m.Drug_Count, "", new { @class = "text-danger" })
+                    </div>
+                    <div ng-messages="transactform.qty.$error1" style="color:red" ng-if="error">
+                        <div ng-message="error">Enter Quantity less than available stock</div>
+                    </div>
+                </div>
+                 </div>
+ </div>    
+                <div class="row">
+    
+    <div class="col-md-8">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.BuyerName,"BuyerName", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-6">
+                        @Html.TextBoxFor(m => m.BuyerName, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.BuyerName, "", new { @class = "text-danger" })
+                    </div>
+             
+                 </div>
+ </div>    
+                    </div>
+                <div class="row">
+    
+    <div class="col-md-8">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Comment,"Comment", new { @class = "col-md-2 control-label" })
+                    <div class="col-md-6">
+                        @Html.TextAreaFor(m => m.Comment, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Comment, "", new { @class = "text-danger" })
+                    </div>
+             
+                 </div>
+        
+ </div>    
+                    </div>
+                <div class="form-group">
+                    <div  class="col-md-offset-2 col-md-10">
+                        <input id="create" type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+                
+        
+            }
+              </section>
+     @Html.ActionLink("Back to List", "Index")
+    </div>

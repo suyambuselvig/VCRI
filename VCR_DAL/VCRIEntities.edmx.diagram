@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9a93a27144a447508b55c27de6077f83" Name="Diagram1">
+        <EntityTypeShape EntityType="VCRIEntities.Dosage" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIEntities.Drug" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIEntities.Formulation" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIEntities.Login" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIEntities.Order" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIEntities.Stock" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIEntities.Trade" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIEntities.Transaction" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
+        <AssociationConnector Association="VCRIEntities.FK_Dosage_Login" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIEntities.FK_Drug_Dosage" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIEntities.FK_Drug_Formulation" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIEntities.FK_Drug_Login" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIEntities.FK_Drug_Trade" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIEntities.FK_Order_Drug" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIEntities.FK_Stock_Drug" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIEntities.FK_Transaction_Drug" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIEntities.FK_Formulation_Login" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIEntities.FK_Trade_Login" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIEntities.FK_Transaction_Login" />
+        <AssociationConnector Association="VCRIEntities.FK_Order_Login" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

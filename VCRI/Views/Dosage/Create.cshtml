@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using VCRI.Models
+@model Dosage
+   
+<div class="row">
+    
+    <div class="col-md-8">
+        <section id="tradeForm">
+            <h3>Create Trade </h3>
+            @using (Html.BeginForm("CreateDosage","Dosage"))
+            {
+                @Html.AntiForgeryToken()
+                   @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Dosage_Description, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Dosage_Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Dosage_Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                            
+                <div class="form-group">
+                    <div  class="col-md-offset-2 col-md-10">
+                        <input id="create" type="submit" value="Create Dosage" class="btn btn-default" />
+                    </div>
+                </div>
+                
+        
+            }
+              </section>
+     </div>
+     @Html.ActionLink("Back to List", "Index")
+ </div>
+ 

@@ -1,0 +1,725 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VCRIEntities.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="VCRIEntitiesStoreContainer">
+          <EntitySet Name="Dosage" EntityType="VCRIEntities.Store.Dosage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Drug" EntityType="VCRIEntities.Store.Drug" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Formulation" EntityType="VCRIEntities.Store.Formulation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Login" EntityType="VCRIEntities.Store.Login" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Order" EntityType="VCRIEntities.Store.Order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Stock" EntityType="VCRIEntities.Store.Stock" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Trade" EntityType="VCRIEntities.Store.Trade" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Transaction" EntityType="VCRIEntities.Store.Transaction" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Dosage_Login" Association="VCRIEntities.Store.FK_Dosage_Login">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Dosage" EntitySet="Dosage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Dosage" Association="VCRIEntities.Store.FK_Drug_Dosage">
+            <End Role="Dosage" EntitySet="Dosage" />
+            <End Role="Drug" EntitySet="Drug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Formulation" Association="VCRIEntities.Store.FK_Drug_Formulation">
+            <End Role="Formulation" EntitySet="Formulation" />
+            <End Role="Drug" EntitySet="Drug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Login" Association="VCRIEntities.Store.FK_Drug_Login">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Drug" EntitySet="Drug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Trade" Association="VCRIEntities.Store.FK_Drug_Trade">
+            <End Role="Trade" EntitySet="Trade" />
+            <End Role="Drug" EntitySet="Drug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Formulation_Login" Association="VCRIEntities.Store.FK_Formulation_Login">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Formulation" EntitySet="Formulation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Drug" Association="VCRIEntities.Store.FK_Order_Drug">
+            <End Role="Drug" EntitySet="Drug" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Login" Association="VCRIEntities.Store.FK_Order_Login">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Drug" Association="VCRIEntities.Store.FK_Stock_Drug">
+            <End Role="Drug" EntitySet="Drug" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trade_Login" Association="VCRIEntities.Store.FK_Trade_Login">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Trade" EntitySet="Trade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Drug" Association="VCRIEntities.Store.FK_Transaction_Drug">
+            <End Role="Drug" EntitySet="Drug" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Login" Association="VCRIEntities.Store.FK_Transaction_Login">
+            <End Role="Login" EntitySet="Login" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Dosage">
+          <Key>
+            <PropertyRef Name="Dosage_Code" />
+          </Key>
+          <Property Name="Dosage_Code" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Dosage_Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Created_By" Type="nchar" MaxLength="10" />
+          <Property Name="Created_Datetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Drug">
+          <Key>
+            <PropertyRef Name="Drug_Code" />
+          </Key>
+          <Property Name="Drug_Code" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Drug_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Trade_Code" Type="nchar" MaxLength="10" />
+          <Property Name="Dosage_Code" Type="nchar" MaxLength="10" />
+          <Property Name="Formulation_code" Type="nchar" MaxLength="10" />
+          <Property Name="Created_Datetime" Type="datetime" />
+          <Property Name="Created_By" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Formulation">
+          <Key>
+            <PropertyRef Name="Formulation_code" />
+          </Key>
+          <Property Name="Formulation_code" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Formulation_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShortName" Type="nchar" MaxLength="10" />
+          <Property Name="Created_By" Type="nchar" MaxLength="10" />
+          <Property Name="Created_Datetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="passwrd" Type="nchar" MaxLength="10" />
+          <Property Name="role" Type="nchar" MaxLength="10" />
+          <Property Name="username" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Order_Code" />
+          </Key>
+          <Property Name="Order_Code" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Order_Date" Type="datetime" />
+          <Property Name="Drug_Code" Type="nchar" MaxLength="10" />
+          <Property Name="Order_Count" Type="int" />
+          <Property Name="Ordered_By" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Drug_Code" />
+          </Key>
+          <Property Name="Drug_Code" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Expiry_Date" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Stock_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trade">
+          <Key>
+            <PropertyRef Name="Trade_Code" />
+          </Key>
+          <Property Name="Trade_Code" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Trade_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Created_By" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Created_datetime" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Drug_Code" Type="nchar" MaxLength="10" />
+          <Property Name="Sold_By" Type="nchar" MaxLength="10" />
+          <Property Name="Sold_Datetime" Type="datetime" />
+          <Property Name="Drug_Count" Type="int" />
+          <Property Name="Comment" Type="varchar" MaxLength="50" />
+          <Property Name="BuyerName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Dosage_Login">
+          <End Role="Login" Type="VCRIEntities.Store.Login" Multiplicity="0..1" />
+          <End Role="Dosage" Type="VCRIEntities.Store.Dosage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Dosage">
+              <PropertyRef Name="Created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Dosage">
+          <End Role="Dosage" Type="VCRIEntities.Store.Dosage" Multiplicity="0..1" />
+          <End Role="Drug" Type="VCRIEntities.Store.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dosage">
+              <PropertyRef Name="Dosage_Code" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="Dosage_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Formulation">
+          <End Role="Formulation" Type="VCRIEntities.Store.Formulation" Multiplicity="0..1" />
+          <End Role="Drug" Type="VCRIEntities.Store.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formulation">
+              <PropertyRef Name="Formulation_code" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="Formulation_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Login">
+          <End Role="Login" Type="VCRIEntities.Store.Login" Multiplicity="0..1" />
+          <End Role="Drug" Type="VCRIEntities.Store.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="Created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Trade">
+          <End Role="Trade" Type="VCRIEntities.Store.Trade" Multiplicity="0..1" />
+          <End Role="Drug" Type="VCRIEntities.Store.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trade">
+              <PropertyRef Name="Trade_Code" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="Trade_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Formulation_Login">
+          <End Role="Login" Type="VCRIEntities.Store.Login" Multiplicity="0..1" />
+          <End Role="Formulation" Type="VCRIEntities.Store.Formulation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Formulation">
+              <PropertyRef Name="Created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Drug">
+          <End Role="Drug" Type="VCRIEntities.Store.Drug" Multiplicity="0..1" />
+          <End Role="Order" Type="VCRIEntities.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug">
+              <PropertyRef Name="Drug_Code" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Drug_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Login">
+          <End Role="Login" Type="VCRIEntities.Store.Login" Multiplicity="0..1" />
+          <End Role="Order" Type="VCRIEntities.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Ordered_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Drug">
+          <End Role="Drug" Type="VCRIEntities.Store.Drug" Multiplicity="1" />
+          <End Role="Stock" Type="VCRIEntities.Store.Stock" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Drug">
+              <PropertyRef Name="Drug_Code" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="Drug_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trade_Login">
+          <End Role="Login" Type="VCRIEntities.Store.Login" Multiplicity="1" />
+          <End Role="Trade" Type="VCRIEntities.Store.Trade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Trade">
+              <PropertyRef Name="Created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Drug">
+          <End Role="Drug" Type="VCRIEntities.Store.Drug" Multiplicity="0..1" />
+          <End Role="Transaction" Type="VCRIEntities.Store.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug">
+              <PropertyRef Name="Drug_Code" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="Drug_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Login">
+          <End Role="Login" Type="VCRIEntities.Store.Login" Multiplicity="0..1" />
+          <End Role="Transaction" Type="VCRIEntities.Store.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="Sold_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VCRIEntities" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="VCRIEntities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Dosages" EntityType="VCRIEntities.Dosage" />
+          <EntitySet Name="Drugs" EntityType="VCRIEntities.Drug" />
+          <EntitySet Name="Formulations" EntityType="VCRIEntities.Formulation" />
+          <EntitySet Name="Logins" EntityType="VCRIEntities.Login" />
+          <EntitySet Name="Orders" EntityType="VCRIEntities.Order" />
+          <EntitySet Name="Stocks" EntityType="VCRIEntities.Stock" />
+          <EntitySet Name="Trades" EntityType="VCRIEntities.Trade" />
+          <EntitySet Name="Transactions" EntityType="VCRIEntities.Transaction" />
+          <AssociationSet Name="FK_Dosage_Login" Association="VCRIEntities.FK_Dosage_Login">
+            <End Role="Login" EntitySet="Logins" />
+            <End Role="Dosage" EntitySet="Dosages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Dosage" Association="VCRIEntities.FK_Drug_Dosage">
+            <End Role="Dosage" EntitySet="Dosages" />
+            <End Role="Drug" EntitySet="Drugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Formulation" Association="VCRIEntities.FK_Drug_Formulation">
+            <End Role="Formulation" EntitySet="Formulations" />
+            <End Role="Drug" EntitySet="Drugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Login" Association="VCRIEntities.FK_Drug_Login">
+            <End Role="Login" EntitySet="Logins" />
+            <End Role="Drug" EntitySet="Drugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Trade" Association="VCRIEntities.FK_Drug_Trade">
+            <End Role="Trade" EntitySet="Trades" />
+            <End Role="Drug" EntitySet="Drugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Drug" Association="VCRIEntities.FK_Order_Drug">
+            <End Role="Drug" EntitySet="Drugs" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Drug" Association="VCRIEntities.FK_Stock_Drug">
+            <End Role="Drug" EntitySet="Drugs" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Drug" Association="VCRIEntities.FK_Transaction_Drug">
+            <End Role="Drug" EntitySet="Drugs" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Formulation_Login" Association="VCRIEntities.FK_Formulation_Login">
+            <End Role="Login" EntitySet="Logins" />
+            <End Role="Formulation" EntitySet="Formulations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trade_Login" Association="VCRIEntities.FK_Trade_Login">
+            <End Role="Login" EntitySet="Logins" />
+            <End Role="Trade" EntitySet="Trades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Login" Association="VCRIEntities.FK_Transaction_Login">
+            <End Role="Login" EntitySet="Logins" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Login" Association="VCRIEntities.FK_Order_Login">
+            <End Role="Login" EntitySet="Logins" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Dosage">
+          <Key>
+            <PropertyRef Name="Dosage_Code" />
+          </Key>
+          <Property Name="Dosage_Code" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Dosage_Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Created_By" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Created_Datetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Login" Relationship="VCRIEntities.FK_Dosage_Login" FromRole="Dosage" ToRole="Login" />
+          <NavigationProperty Name="Drugs" Relationship="VCRIEntities.FK_Drug_Dosage" FromRole="Dosage" ToRole="Drug" />
+        </EntityType>
+        <EntityType Name="Drug">
+          <Key>
+            <PropertyRef Name="Drug_Code" />
+          </Key>
+          <Property Name="Drug_Code" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Drug_Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Trade_Code" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Dosage_Code" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Formulation_code" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Created_Datetime" Type="DateTime" Precision="3" />
+          <Property Name="Created_By" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Dosage" Relationship="VCRIEntities.FK_Drug_Dosage" FromRole="Drug" ToRole="Dosage" />
+          <NavigationProperty Name="Formulation" Relationship="VCRIEntities.FK_Drug_Formulation" FromRole="Drug" ToRole="Formulation" />
+          <NavigationProperty Name="Login" Relationship="VCRIEntities.FK_Drug_Login" FromRole="Drug" ToRole="Login" />
+          <NavigationProperty Name="Trade" Relationship="VCRIEntities.FK_Drug_Trade" FromRole="Drug" ToRole="Trade" />
+          <NavigationProperty Name="Orders" Relationship="VCRIEntities.FK_Order_Drug" FromRole="Drug" ToRole="Order" />
+          <NavigationProperty Name="Stock" Relationship="VCRIEntities.FK_Stock_Drug" FromRole="Drug" ToRole="Stock" />
+          <NavigationProperty Name="Transactions" Relationship="VCRIEntities.FK_Transaction_Drug" FromRole="Drug" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Formulation">
+          <Key>
+            <PropertyRef Name="Formulation_code" />
+          </Key>
+          <Property Name="Formulation_code" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Formulation_Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ShortName" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Created_By" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Created_Datetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Drugs" Relationship="VCRIEntities.FK_Drug_Formulation" FromRole="Formulation" ToRole="Drug" />
+          <NavigationProperty Name="Login" Relationship="VCRIEntities.FK_Formulation_Login" FromRole="Formulation" ToRole="Login" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="passwrd" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="role" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="username" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Dosages" Relationship="VCRIEntities.FK_Dosage_Login" FromRole="Login" ToRole="Dosage" />
+          <NavigationProperty Name="Drugs" Relationship="VCRIEntities.FK_Drug_Login" FromRole="Login" ToRole="Drug" />
+          <NavigationProperty Name="Formulations" Relationship="VCRIEntities.FK_Formulation_Login" FromRole="Login" ToRole="Formulation" />
+          <NavigationProperty Name="Trades" Relationship="VCRIEntities.FK_Trade_Login" FromRole="Login" ToRole="Trade" />
+          <NavigationProperty Name="Transactions" Relationship="VCRIEntities.FK_Transaction_Login" FromRole="Login" ToRole="Transaction" />
+          <NavigationProperty Name="Orders" Relationship="VCRIEntities.FK_Order_Login" FromRole="Login" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Order_Code" />
+          </Key>
+          <Property Name="Order_Code" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Order_Date" Type="DateTime" Precision="3" />
+          <Property Name="Drug_Code" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Order_Count" Type="Int32" />
+          <Property Name="Ordered_By" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Drug" Relationship="VCRIEntities.FK_Order_Drug" FromRole="Order" ToRole="Drug" />
+          <NavigationProperty Name="Login" Relationship="VCRIEntities.FK_Order_Login" FromRole="Order" ToRole="Login" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Drug_Code" />
+          </Key>
+          <Property Name="Drug_Code" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Expiry_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Drug" Relationship="VCRIEntities.FK_Stock_Drug" FromRole="Stock" ToRole="Drug" />
+          <Property Type="Int32" Name="Stock_ID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trade">
+          <Key>
+            <PropertyRef Name="Trade_Code" />
+          </Key>
+          <Property Name="Trade_Code" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Trade_Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Created_By" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Created_datetime" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Drugs" Relationship="VCRIEntities.FK_Drug_Trade" FromRole="Trade" ToRole="Drug" />
+          <NavigationProperty Name="Login" Relationship="VCRIEntities.FK_Trade_Login" FromRole="Trade" ToRole="Login" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Drug_Code" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Sold_By" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Sold_Datetime" Type="DateTime" Precision="3" />
+          <Property Name="Drug_Count" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="BuyerName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Drug" Relationship="VCRIEntities.FK_Transaction_Drug" FromRole="Transaction" ToRole="Drug" />
+          <NavigationProperty Name="Login" Relationship="VCRIEntities.FK_Transaction_Login" FromRole="Transaction" ToRole="Login" />
+        </EntityType>
+        <Association Name="FK_Dosage_Login">
+          <End Role="Login" Type="VCRIEntities.Login" Multiplicity="0..1" />
+          <End Role="Dosage" Type="VCRIEntities.Dosage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Dosage">
+              <PropertyRef Name="Created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Dosage">
+          <End Role="Dosage" Type="VCRIEntities.Dosage" Multiplicity="0..1" />
+          <End Role="Drug" Type="VCRIEntities.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dosage">
+              <PropertyRef Name="Dosage_Code" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="Dosage_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Formulation">
+          <End Role="Formulation" Type="VCRIEntities.Formulation" Multiplicity="0..1" />
+          <End Role="Drug" Type="VCRIEntities.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formulation">
+              <PropertyRef Name="Formulation_code" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="Formulation_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Login">
+          <End Role="Login" Type="VCRIEntities.Login" Multiplicity="0..1" />
+          <End Role="Drug" Type="VCRIEntities.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="Created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Trade">
+          <End Role="Trade" Type="VCRIEntities.Trade" Multiplicity="0..1" />
+          <End Role="Drug" Type="VCRIEntities.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trade">
+              <PropertyRef Name="Trade_Code" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="Trade_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Drug">
+          <End Role="Drug" Type="VCRIEntities.Drug" Multiplicity="0..1" />
+          <End Role="Order" Type="VCRIEntities.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug">
+              <PropertyRef Name="Drug_Code" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Drug_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Drug">
+          <End Role="Drug" Type="VCRIEntities.Drug" Multiplicity="1" />
+          <End Role="Stock" Type="VCRIEntities.Stock" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Drug">
+              <PropertyRef Name="Drug_Code" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="Drug_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Drug">
+          <End Role="Drug" Type="VCRIEntities.Drug" Multiplicity="0..1" />
+          <End Role="Transaction" Type="VCRIEntities.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug">
+              <PropertyRef Name="Drug_Code" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="Drug_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Formulation_Login">
+          <End Role="Login" Type="VCRIEntities.Login" Multiplicity="0..1" />
+          <End Role="Formulation" Type="VCRIEntities.Formulation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Formulation">
+              <PropertyRef Name="Created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trade_Login">
+          <End Role="Login" Type="VCRIEntities.Login" Multiplicity="1" />
+          <End Role="Trade" Type="VCRIEntities.Trade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Trade">
+              <PropertyRef Name="Created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Login">
+          <End Type="VCRIEntities.Login" Role="Login" Multiplicity="0..1" />
+          <End Type="VCRIEntities.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="Sold_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Login">
+          <End Type="VCRIEntities.Login" Role="Login" Multiplicity="0..1" />
+          <End Type="VCRIEntities.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Login">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Ordered_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VCRIEntitiesStoreContainer" CdmEntityContainer="VCRIEntities1">
+          <EntitySetMapping Name="Dosages">
+            <EntityTypeMapping TypeName="VCRIEntities.Dosage">
+              <MappingFragment StoreEntitySet="Dosage">
+                <ScalarProperty Name="Dosage_Code" ColumnName="Dosage_Code" />
+                <ScalarProperty Name="Dosage_Description" ColumnName="Dosage_Description" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_Datetime" ColumnName="Created_Datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drugs">
+            <EntityTypeMapping TypeName="VCRIEntities.Drug">
+              <MappingFragment StoreEntitySet="Drug">
+                <ScalarProperty Name="Drug_Code" ColumnName="Drug_Code" />
+                <ScalarProperty Name="Drug_Name" ColumnName="Drug_Name" />
+                <ScalarProperty Name="Trade_Code" ColumnName="Trade_Code" />
+                <ScalarProperty Name="Dosage_Code" ColumnName="Dosage_Code" />
+                <ScalarProperty Name="Formulation_code" ColumnName="Formulation_code" />
+                <ScalarProperty Name="Created_Datetime" ColumnName="Created_Datetime" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Formulations">
+            <EntityTypeMapping TypeName="VCRIEntities.Formulation">
+              <MappingFragment StoreEntitySet="Formulation">
+                <ScalarProperty Name="Formulation_code" ColumnName="Formulation_code" />
+                <ScalarProperty Name="Formulation_Name" ColumnName="Formulation_Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_Datetime" ColumnName="Created_Datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="VCRIEntities.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="passwrd" ColumnName="passwrd" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="VCRIEntities.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Order_Code" ColumnName="Order_Code" />
+                <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+                <ScalarProperty Name="Drug_Code" ColumnName="Drug_Code" />
+                <ScalarProperty Name="Order_Count" ColumnName="Order_Count" />
+                <ScalarProperty Name="Ordered_By" ColumnName="Ordered_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="VCRIEntities.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="Stock_ID" ColumnName="Stock_ID" />
+                <ScalarProperty Name="Drug_Code" ColumnName="Drug_Code" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Expiry_Date" ColumnName="Expiry_Date" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trades">
+            <EntityTypeMapping TypeName="VCRIEntities.Trade">
+              <MappingFragment StoreEntitySet="Trade">
+                <ScalarProperty Name="Trade_Code" ColumnName="Trade_Code" />
+                <ScalarProperty Name="Trade_Name" ColumnName="Trade_Name" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_datetime" ColumnName="Created_datetime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="VCRIEntities.Transaction">
+              <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="Drug_Code" ColumnName="Drug_Code" />
+                <ScalarProperty Name="Sold_By" ColumnName="Sold_By" />
+                <ScalarProperty Name="Sold_Datetime" ColumnName="Sold_Datetime" />
+                <ScalarProperty Name="Drug_Count" ColumnName="Drug_Count" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="BuyerName" ColumnName="BuyerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
