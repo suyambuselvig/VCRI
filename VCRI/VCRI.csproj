@@ -185,9 +185,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="VCR_DAL">
-      <HintPath>..\VCR_DAL\bin\Debug\VCR_DAL.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
@@ -210,7 +207,7 @@
     <Compile Include="Models\Dosage.cs" />
     <Compile Include="Models\Drug.cs" />
     <Compile Include="Models\Formulation.cs" />
-    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\ULogin.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Stock.cs" />
     <Compile Include="Models\Trade.cs" />
@@ -392,6 +389,12 @@
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VCRI_DAL\VCRI_DAL.csproj">
+      <Project>{47c19b00-8daa-4604-9d5e-2a36f1fc81fc}</Project>
+      <Name>VCRI_DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using VCRI.Models
-@model Login
+@model ULogin
 
 <div class="navbar navbar-inverse navbar-fixed-top">
         
@@ -15,7 +15,7 @@
    
             </div>
          <div class="navbar-collapse collapse">
-             @{ Login user =(Login) HttpContext.Current.Session["user_d"];}
+             @{ ULogin user =(ULogin) HttpContext.Current.Session["user_ID"];}
                 <ul class="nav navbar-nav">
                     
                    
@@ -36,7 +36,7 @@
                         
                     }
                     <li>@Html.ActionLink("Drug", "Index", "Drug")</li>
-                     <li>@Html.ActionLink("Order", "Index", "Order")</li>
+                     @*<li>@Html.ActionLink("Order", "Index", "Order")</li>*@
                     <li>@Html.ActionLink("Stock", "Index", "Stock")</li>
                     <li>@Html.ActionLink("Transaction", "Index", "Transaction")</li>
                      <li>@Html.ActionLink("Logout", "Index", "Login")</li>
@@ -46,5 +46,5 @@
 </div>
 <br />
 <br /><br />Employee Page<br /><br /><br />
-<h3>Welcome @user.username,</h3>
+<h3>Welcome @user.user_Name,</h3>
 

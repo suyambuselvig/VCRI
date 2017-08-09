@@ -3,7 +3,7 @@
 }
 
 @using VCRI.Models
-@model Login
+@model ULogin
 @{
     ViewBag.Title = "Log in";
 }
@@ -19,17 +19,17 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(m => m.userid, new { @class = "col-md-2 control-label" })
+                    @Html.LabelFor(m => m.user_ID, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.userid, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.userid, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.user_ID, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.user_ID, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.passwrd, new { @class = "col-md-2 control-label" })
+                    @Html.LabelFor(m => m.user_Pwd, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.PasswordFor(m => m.passwrd, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.passwrd, "", new { @class = "text-danger" })
+                        @Html.PasswordFor(m => m.user_Pwd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.user_Pwd, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 

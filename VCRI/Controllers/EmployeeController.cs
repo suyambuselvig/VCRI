@@ -9,17 +9,11 @@ namespace VCRI.Controllers
 {
     public class EmployeeController : Controller
     {
-        //
-        // GET: /Employee/
-        VCR_DAL.DataAccessLayer dal = new VCR_DAL.DataAccessLayer();
+        VCRI_DAL.DataAccessLayer dal = new VCRI_DAL.DataAccessLayer();
         public ActionResult Index()
         {
-                       
-              
                 return View();
-
-            
-        }
+         }
 
         //
         // GET: /Employee/Details/5

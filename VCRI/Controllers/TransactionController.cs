@@ -12,18 +12,18 @@ namespace VCRI.Controllers
         //
         // GET: /Transaction/
 
-        VCR_DAL.DataAccessLayer dal = new VCR_DAL.DataAccessLayer();
-        //VCR_DAL.Transaction transaction_data = new VCR_DAL.Transaction();
+        VCRI_DAL.DataAccessLayer dal = new VCRI_DAL.DataAccessLayer();
+        //VCRI_DAL.Transaction transaction_data = new VCRI_DAL.Transaction();
         Transaction transaction = new Transaction();  // Model CLASS
       
 
         public ActionResult Index()
         {
             
-            List<VCR_DAL.Transaction> list_transaction = dal.fetch_transaction();
+            List<VCRI_DAL.Transaction> list_transaction = dal.fetch_transaction();
             var list_transaction_Model = new List<Models.Transaction>();
             int i = 0;
-            foreach (VCR_DAL.Transaction tr in list_transaction)
+            foreach (VCRI_DAL.Transaction tr in list_transaction)
             {
 
                list_transaction_Model.Add(Mapper.Map<Transaction>(tr));
@@ -37,10 +37,10 @@ namespace VCRI.Controllers
 
         public ActionResult Create()
         {
-            List<VCR_DAL.Drug> list_drug = dal.get_drug();
+            List<VCRI_DAL.Drug> list_drug = dal.get_drug();
             VCRI.Models.Drug d_Model = new Drug();
             List<Drug> list_drug_Model = new List<Drug>();
-            foreach (VCR_DAL.Drug d in list_drug)
+            foreach (VCRI_DAL.Drug d in list_drug)
             {
                 list_drug_Model.Add(Mapper.Map<Drug>(d));
             }
@@ -54,26 +54,26 @@ namespace VCRI.Controllers
         {
             try
             {
-                Login trd_User = (Login)Session["user_d"];
+                ULogin trd_User = (ULogin)Session["user_ID"];
 
                 transaction.TransactionID = "";
                 transaction.Drug_Code = form["drug"];
                 transaction.Drug_Count = Convert.ToInt32(form["Drug_Count"]);
-                transaction.Sold_By = trd_User.userid;
+                transaction.Sold_By = trd_User.user_ID ;
                 transaction.Sold_Datetime = System.DateTime.Now;
                 transaction.Comment = form["Comment"];
                 transaction.BuyerName = form["BuyerName"];
 
                // am testing here
 
-                //  Mapper.CreateMap<Models.Transaction, VCR_DAL.Transaction>();
-             //  transaction_data = Mapper.Map<Models.Transaction, VCR_DAL.Transaction>(transaction);
+                //  Mapper.CreateMap<Models.Transaction, VCRI_DAL.Transaction>();
+             //  transaction_data = Mapper.Map<Models.Transaction, VCRI_DAL.Transaction>(transaction);
 
-                //transaction_data = Mapper.Map< VCR_DAL.Transaction>(transaction);
+                //transaction_data = Mapper.Map< VCRI_DAL.Transaction>(transaction);
 
                 //bool status = dal.Create_Transaction(transaction_data);
 
-                bool status = dal.Create_Transaction(Mapper.Map<VCR_DAL.Transaction>(transaction));
+                bool status = dal.Create_Transaction(Mapper.Map<VCRI_DAL.Transaction>(transaction));
 
                 if (status)
                 {
@@ -104,24 +104,24 @@ namespace VCRI.Controllers
 
         //public ActionResult Edit(string transactid)
         //{
-        //    //Mapper.CreateMap<VCR_DAL.Drug, Models.Drug>();
-        //    //Mapper.CreateMap<Models.Drug, VCR_DAL.Drug>();
+        //    //Mapper.CreateMap<VCRI_DAL.Drug, Models.Drug>();
+        //    //Mapper.CreateMap<Models.Drug, VCRI_DAL.Drug>();
 
 
-        //    List<VCR_DAL.Drug> list_drug = dal.fetch_drug();
+        //    List<VCRI_DAL.Drug> list_drug = dal.fetch_drug();
         //    VCRI.Models.Drug d_Model = new Drug();
         //    List<Drug> list_drug_Model = new List<Drug>();
-        //    foreach (VCR_DAL.Drug t1 in list_drug)
+        //    foreach (VCRI_DAL.Drug t1 in list_drug)
         //    {
-        //        //list_drug_Model.Add(Mapper.Map<VCR_DAL.Drug, VCRI.Models.Drug>(t1));
+        //        //list_drug_Model.Add(Mapper.Map<VCRI_DAL.Drug, VCRI.Models.Drug>(t1));
         //        list_drug_Model.Add(Mapper.Map<Drug>(t1));
 
         //    }
 
         //    ViewData["drug"] = list_drug_Model;
         //    transaction_data = dal.get_transaction_details(transactid);
-        //    ViewData["current_drug"] = (Mapper.Map<VCR_DAL.Drug, VCRI.Models.Drug>(dal.get_drug_details(transaction_data.Drug_Code))).Drug_Name;
-        //    transaction = Mapper.Map<VCR_DAL.Transaction, Models.Transaction>(transaction_data);
+        //    ViewData["current_drug"] = (Mapper.Map<VCRI_DAL.Drug, VCRI.Models.Drug>(dal.get_drug_details(transaction_data.Drug_Code))).Drug_Name;
+        //    transaction = Mapper.Map<VCRI_DAL.Transaction, Models.Transaction>(transaction_data);
         //    return View(transaction);
         //}
 
@@ -135,10 +135,10 @@ namespace VCRI.Controllers
         //    {
 
         //        string tid = t.TransactionID;
-        //        //Mapper.CreateMap<Models.Transaction, VCR_DAL.Transaction>();
+        //        //Mapper.CreateMap<Models.Transaction, VCRI_DAL.Transaction>();
         //        t.Drug_Code = collection["drug"];
-        //        //transaction_data = Mapper.Map<Models.Transaction, VCR_DAL.Transaction>(t);
-        //        transaction_data = Mapper.Map<VCR_DAL.Transaction>(t);
+        //        //transaction_data = Mapper.Map<Models.Transaction, VCRI_DAL.Transaction>(t);
+        //        transaction_data = Mapper.Map<VCRI_DAL.Transaction>(t);
 
         //        bool status = dal.update_transact_details(transaction_data, tid);
         //        if (status)

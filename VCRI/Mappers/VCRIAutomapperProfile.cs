@@ -13,15 +13,17 @@ namespace VCRI.Mappers
     {
         public VCRIAutomapperProfile()
         {
-           CreateMap<VCR_DAL.Transaction, Models.Transaction>()
-                .ForMember(dos => dos.uname, map => map.MapFrom(name => name.Login.username))
-                .ForMember(dos => dos.drugname, map => map.MapFrom(name => name.Drug.Drug_Name))
+            //For Transaction
+           CreateMap<VCRI_DAL.Transaction, Models.Transaction>()
+                .ForMember(dos => dos.uname, map => map.MapFrom(name => name.ULogin.user_Name))
+                .ForMember(dos => dos.drugname, map => map.MapFrom(name => name.Drug.drug_Name))
                 .ReverseMap();
 
 
-            CreateMap<VCR_DAL.Drug, Models.Drug>().ReverseMap();
+            CreateMap<VCRI_DAL.Drug, Models.Drug>().ReverseMap();
 
-            CreateMap<Models.Transaction, VCR_DAL.Transaction>();
+            CreateMap<VCRI_DAL.ULogin, Models.ULogin>();
+
 
         }
     }

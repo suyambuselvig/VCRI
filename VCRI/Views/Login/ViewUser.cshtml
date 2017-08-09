@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model IEnumerable<VCRI.Models.Login>
+@model IEnumerable<VCRI.Models.ULogin>
 @using GridMvc.Html;
 <html>
 <head>
@@ -19,10 +19,10 @@
         @Html.Grid(Model).Columns(columns => 
                     {
                        
-          columns.Add(c => c.userid).Titled("User ID");
-          columns.Add(c => c.username).Titled("Name").Filterable(true);
+          columns.Add(c => c.user_ID).Titled("User ID");
+          columns.Add(c => c.user_Name).Titled("Name").Filterable(true);
           columns.Add(c => c.role).Titled("Role");
-columns.Add().Sanitized(false).Encoded(false).RenderValueAs(o => Html.ActionLink("Delete", "Delete", "Login", new { userid = o.userid.Trim() }, new { }).ToHtmlString());
+columns.Add().Sanitized(false).Encoded(false).RenderValueAs(o => Html.ActionLink("Delete", "Delete", "Login", new { userid = o.user_ID.Trim() }, new { }).ToHtmlString());
                      
                     }).WithPaging(3).Sortable(true)
     </div>

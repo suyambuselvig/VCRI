@@ -9,20 +9,20 @@ namespace VCRI.Controllers
 {
     public class TradeController : Controller
     {
-        VCR_DAL.DataAccessLayer dal = new VCR_DAL.DataAccessLayer();
+        VCRI_DAL.DataAccessLayer dal = new VCRI_DAL.DataAccessLayer();
         VCRI.Models.Trade trade = new Models.Trade();
-        VCR_DAL.Trade trade_data = new VCR_DAL.Trade();
+        VCRI_DAL.Trade trade_data = new VCRI_DAL.Trade();
         
         //public ActionResult Index()
         //{
-        //    Mapper.CreateMap<VCR_DAL.Trade, Models.Trade>().ForMember(dos => dos.uname, map => map.MapFrom(name => name.Login.username));
-        //    Mapper.CreateMap<Models.Trade, VCR_DAL.Trade>();   
-        //    List<VCR_DAL.Trade> list_trade = dal.fetch_trade();
+        //    Mapper.CreateMap<VCRI_DAL.Trade, Models.Trade>().ForMember(dos => dos.uname, map => map.MapFrom(name => name.Login.username));
+        //    Mapper.CreateMap<Models.Trade, VCRI_DAL.Trade>();   
+        //    List<VCRI_DAL.Trade> list_trade = dal.fetch_trade();
         //    var list_trade_Model = new List<Models.Trade>();
         //    int i = 0;
-        //    foreach (VCR_DAL.Trade tr in list_trade)
+        //    foreach (VCRI_DAL.Trade tr in list_trade)
         //    {
-        //        list_trade_Model.Add(Mapper.Map<VCR_DAL.Trade, Models.Trade>(tr));
+        //        list_trade_Model.Add(Mapper.Map<VCRI_DAL.Trade, Models.Trade>(tr));
         //        i++;
         //    }
         //    return View(list_trade_Model);
@@ -42,14 +42,14 @@ namespace VCRI.Controllers
         //{
         //    try
         //    {
-        //        VCRI.Models.Login trd_User = (VCRI.Models.Login)Session["user_d"];
+        //        VCRI.Models.Login trd_User = (VCRI.Models.Login)Session["user_ID"];
         //        trade.Trade_Code = "";
         //        trade.Trade_Name = form["Trade_Name"];
         //        trade.Description = form["Description"];
         //        trade.Created_By = trd_User.userid;
         //        trade.Created_datetime = System.DateTime.Now;
-        //        Mapper.CreateMap<Models.Trade, VCR_DAL.Trade>();
-        //        trade_data = Mapper.Map<Models.Trade, VCR_DAL.Trade>(trade);
+        //        Mapper.CreateMap<Models.Trade, VCRI_DAL.Trade>();
+        //        trade_data = Mapper.Map<Models.Trade, VCRI_DAL.Trade>(trade);
         //        bool status = dal.Create_Trade(trade_data);
         //        if (status)
         //        {
@@ -72,9 +72,9 @@ namespace VCRI.Controllers
 
         //public ActionResult Edit(string tradeid)
         //{
-        //    Mapper.CreateMap<VCR_DAL.Trade, Models.Trade>();
+        //    Mapper.CreateMap<VCRI_DAL.Trade, Models.Trade>();
         //    trade_data = dal.get_trade_details(tradeid);
-        //    trade = Mapper.Map<VCR_DAL.Trade, Models.Trade>(trade_data);
+        //    trade = Mapper.Map<VCRI_DAL.Trade, Models.Trade>(trade_data);
         //    return View(trade);
         //}
 
@@ -87,9 +87,9 @@ namespace VCRI.Controllers
         //    try
         //    {
         //        string tid = t.Trade_Code;
-        //        Mapper.CreateMap<Models.Trade, VCR_DAL.Trade>();
+        //        Mapper.CreateMap<Models.Trade, VCRI_DAL.Trade>();
 
-        //        trade_data= Mapper.Map<Models.Trade, VCR_DAL.Trade>(t);
+        //        trade_data= Mapper.Map<Models.Trade, VCRI_DAL.Trade>(t);
                
         //        bool status = dal.update_trade_details(trade_data,tid);
         //        if (status)

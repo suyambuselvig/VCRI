@@ -11,19 +11,19 @@ namespace VCRI.Controllers
     {
         //
         // GET: /Stock/
-        VCR_DAL.DataAccessLayer dal = new VCR_DAL.DataAccessLayer();
+        VCRI_DAL.DataAccessLayer dal = new VCRI_DAL.DataAccessLayer();
         VCRI.Models.Stock stock = new Models.Stock();
-        VCR_DAL.Stock stock_data = new VCR_DAL.Stock();
+        VCRI_DAL.Stock stock_data = new VCRI_DAL.Stock();
         //public ActionResult Index()
         //{
-        //    Mapper.CreateMap<VCR_DAL.Stock, Models.Stock>().ForMember(dos => dos.drugname, map => map.MapFrom(name => name.Drug.Drug_Name));
-        //    Mapper.CreateMap<Models.Stock, VCR_DAL.Stock>();
-        //    List<VCR_DAL.Stock> list_stock = dal.fetch_stock();
+        //    Mapper.CreateMap<VCRI_DAL.Stock, Models.Stock>().ForMember(dos => dos.drugname, map => map.MapFrom(name => name.Drug.Drug_Name));
+        //    Mapper.CreateMap<Models.Stock, VCRI_DAL.Stock>();
+        //    List<VCRI_DAL.Stock> list_stock = dal.fetch_stock();
         //    var list_stock_Model = new List<Models.Stock>();
         //    int i = 0;
-        //    foreach (VCR_DAL.Stock tr in list_stock)
+        //    foreach (VCRI_DAL.Stock tr in list_stock)
         //    {
-        //        list_stock_Model.Add(Mapper.Map<VCR_DAL.Stock, Models.Stock>(tr));
+        //        list_stock_Model.Add(Mapper.Map<VCRI_DAL.Stock, Models.Stock>(tr));
         //        i++;
         //    }
         //    return View(list_stock_Model);
@@ -42,14 +42,14 @@ namespace VCRI.Controllers
 
         //public ActionResult Create()
         //{
-        //    Mapper.CreateMap<VCR_DAL.Drug, Models.Drug>();
-        //    Mapper.CreateMap<Models.Drug, VCR_DAL.Drug>();
-        //    List<VCR_DAL.Drug> list_drug = dal.fetch_drug();
+        //    Mapper.CreateMap<VCRI_DAL.Drug, Models.Drug>();
+        //    Mapper.CreateMap<Models.Drug, VCRI_DAL.Drug>();
+        //    List<VCRI_DAL.Drug> list_drug = dal.fetch_drug();
         //    VCRI.Models.Drug d_Model = new Drug();
         //    List<Drug> list_drug_Model = new List<Drug>();
-        //    foreach (VCR_DAL.Drug d in list_drug)
+        //    foreach (VCRI_DAL.Drug d in list_drug)
         //    {
-        //        list_drug_Model.Add(Mapper.Map<VCR_DAL.Drug, VCRI.Models.Drug>(d));
+        //        list_drug_Model.Add(Mapper.Map<VCRI_DAL.Drug, VCRI.Models.Drug>(d));
         //    }
 
         //    ViewData["drug"] = list_drug_Model;
@@ -66,15 +66,15 @@ namespace VCRI.Controllers
         //{
         //    try
         //    {
-        //        VCRI.Models.Login formula_User = (VCRI.Models.Login)Session["user_d"];
+        //        VCRI.Models.Login formula_User = (VCRI.Models.Login)Session["user_ID"];
         //        stock.Quantity = Convert.ToInt32(collection["Quantity"]);
         //        String date = collection["Expiry_Date"];
         //        stock.Expiry_Date = Convert.ToDateTime(date);
         //        String value = collection["IsActive"];
         //        stock.IsActive = value=="false"?Convert.ToBoolean(collection["IsActive"]):true;
         //        stock.Drug_Code = collection["drug"];
-        //        Mapper.CreateMap<Models.Stock, VCR_DAL.Stock>();
-        //        stock_data = Mapper.Map<Models.Stock, VCR_DAL.Stock>(stock);
+        //        Mapper.CreateMap<Models.Stock, VCRI_DAL.Stock>();
+        //        stock_data = Mapper.Map<Models.Stock, VCRI_DAL.Stock>(stock);
         //        bool status = dal.Create_Stock(stock_data);
         //        if (status)
         //        {
@@ -98,10 +98,10 @@ namespace VCRI.Controllers
         //public ActionResult Edit(string drugid)
         //{
 
-        //    Mapper.CreateMap<VCR_DAL.Stock, Models.Stock>();
-        //    Mapper.CreateMap<Models.Stock, VCR_DAL.Stock>();
+        //    Mapper.CreateMap<VCRI_DAL.Stock, Models.Stock>();
+        //    Mapper.CreateMap<Models.Stock, VCRI_DAL.Stock>();
         //    stock_data = dal.get_stock_details(drugid);
-        //    stock = Mapper.Map<VCR_DAL.Stock, Models.Stock>(stock_data);
+        //    stock = Mapper.Map<VCRI_DAL.Stock, Models.Stock>(stock_data);
         //    return View(stock);
         //}
 
@@ -115,8 +115,8 @@ namespace VCRI.Controllers
         //    {
 
         //        string sid = s.Drug_Code;
-        //        Mapper.CreateMap<Models.Stock, VCR_DAL.Stock>();
-        //        stock_data = Mapper.Map<Models.Stock, VCR_DAL.Stock>(s);
+        //        Mapper.CreateMap<Models.Stock, VCRI_DAL.Stock>();
+        //        stock_data = Mapper.Map<Models.Stock, VCRI_DAL.Stock>(s);
 
         //        bool status = dal.update_stock_details(stock_data, sid);
         //        if (status)

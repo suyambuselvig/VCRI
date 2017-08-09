@@ -12,15 +12,12 @@ namespace VCRI.Controllers
     {
         //
         // GET: /Login/
-        VCR_DAL.DataAccessLayer dal = new VCR_DAL.DataAccessLayer();
-        VCRI.Models.Login log = new Models.Login();
-        VCR_DAL.Login log_data = new VCR_DAL.Login();
+        VCRI_DAL.DataAccessLayer dal = new VCRI_DAL.DataAccessLayer();
+        VCRI_DAL.ULogin log_data = new VCRI_DAL.ULogin();
 
         public ActionResult Index()
         {
-          //  Mapper.CreateMap<VCR_DAL.Login, Models.Login>();
-
-            return View();
+           return View();
         }
 
         //
@@ -33,13 +30,12 @@ namespace VCRI.Controllers
         public ActionResult Authenticate(FormCollection form)
         {
 
-            VCR_DAL.Login l = dal.Authenticate(form["userid"], form["passwrd"]);
+            VCRI_DAL.ULogin l = dal.Authenticate(form["user_ID"], form["user_Pwd"]);
             if (l != null)
             {
-                var log1 = Mapper.Map<VCR_DAL.Login, Models.Login>(l);
+                var log1 = Mapper.Map<VCRI_DAL.ULogin, Models.ULogin>(l);
                 //String role = log.role.ToString().Trim();
-                //TempData["user"] = log;
-                Session["user_d"] = log1;
+                Session["user_ID"] = log1;
                 return RedirectToAction("Index", "Employee");
 
             }
@@ -47,8 +43,6 @@ namespace VCRI.Controllers
             {
                 return View("Invalid_user");
             }
-
-
         }
 
         //
@@ -60,12 +54,12 @@ namespace VCRI.Controllers
 
         public ActionResult ViewUser()
         {
-            List<VCR_DAL.Login> list_user = dal.fetch_User();
-            var list_users_Model = new List<Models.Login>();
+            List<VCRI_DAL.ULogin> list_user = dal.fetch_User();
+            var list_users_Model = new List<Models.ULogin>();
             int i = 0;
-            foreach (VCR_DAL.Login user in list_user)
+            foreach (VCRI_DAL.ULogin user in list_user)
             {
-                list_users_Model.Add(Mapper.Map<VCR_DAL.Login, Models.Login>(user));
+                list_users_Model.Add(Mapper.Map<VCRI_DAL.ULogin, Models.ULogin>(user));
                 i++;
             }
             ViewBag.user_list = list_users_Model;
@@ -80,10 +74,11 @@ namespace VCRI.Controllers
         {
             try
             {
-                log_data.userid = form["userid"];
-                log_data.username = form["username"];
-                log_data.passwrd = form["passwrd"];
+                log_data.user_ID  = form["user_ID"];
+                log_data.user_Name = form["user_Name"];
+                log_data.user_Pwd = form["user_Pwd"];
                 log_data.role = form["role"];
+                log_data.date_Created  = DateTime.Now;
                 bool status = dal.Create_User(log_data);
                 if(status)
                 {

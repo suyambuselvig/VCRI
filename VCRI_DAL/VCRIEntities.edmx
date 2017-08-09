@@ -1,0 +1,921 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VCRIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Dosage">
+          <Key>
+            <PropertyRef Name="dosage_Code" />
+          </Key>
+          <Property Name="dosage_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="dosage_Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="created_By" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="date_created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Drug">
+          <Key>
+            <PropertyRef Name="drug_Code" />
+          </Key>
+          <Property Name="drug_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="drug_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="trade_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="dosage_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="formulation_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="date_Created" Type="datetime" Nullable="false" />
+          <Property Name="Created_By" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Formulation">
+          <Key>
+            <PropertyRef Name="formulation_code" />
+          </Key>
+          <Property Name="formulation_code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="formulation_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="shortName" Type="nvarchar" MaxLength="25" />
+          <Property Name="created_By" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="date_Created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PurchaseOrder">
+          <Key>
+            <PropertyRef Name="po_Code" />
+          </Key>
+          <Property Name="po_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="po_Date" Type="datetime" Nullable="false" />
+          <Property Name="drug_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="supplier_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="po_Quantity" Type="int" Nullable="false" />
+          <Property Name="Ordered_By" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="date_Created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="stock_Code" />
+          </Key>
+          <Property Name="stock_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="stock_ReceivedDate" Type="datetime" Nullable="false" />
+          <Property Name="stock_ReceivedQuantity" Type="int" Nullable="false" />
+          <Property Name="po_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="batchCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="expiry_Date" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="stock_BalanceQuantity" Type="int" Nullable="false" />
+          <Property Name="created_By" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="date_Created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplier_Code" />
+          </Key>
+          <Property Name="supplier_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="supplier_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="created_By" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="date_Created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Trade">
+          <Key>
+            <PropertyRef Name="trade_Code" />
+          </Key>
+          <Property Name="trade_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="trade_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_Created" Type="datetime" Nullable="false" />
+          <Property Name="created_By" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="transaction_Code" />
+          </Key>
+          <Property Name="transaction_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="drug_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="drug_Quantity" Type="int" Nullable="false" />
+          <Property Name="sold_By" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="sold_Date" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="BuyerName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ULogin">
+          <Key>
+            <PropertyRef Name="user_ID" />
+          </Key>
+          <Property Name="Sno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="user_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_Pwd" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="25" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="date_Created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Dosage_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Dosage" Type="Self.Dosage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Dosage">
+              <PropertyRef Name="created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Dosage">
+          <End Role="Dosage" Type="Self.Dosage" Multiplicity="1" />
+          <End Role="Drug" Type="Self.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dosage">
+              <PropertyRef Name="dosage_Code" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="dosage_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Formulation">
+          <End Role="Formulation" Type="Self.Formulation" Multiplicity="1" />
+          <End Role="Drug" Type="Self.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formulation">
+              <PropertyRef Name="formulation_code" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="formulation_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Trade">
+          <End Role="Trade" Type="Self.Trade" Multiplicity="1" />
+          <End Role="Drug" Type="Self.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trade">
+              <PropertyRef Name="trade_Code" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="trade_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Drug" Type="Self.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="Created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Formulation_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Formulation" Type="Self.Formulation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Formulation">
+              <PropertyRef Name="created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrder_Drug">
+          <End Role="Drug" Type="Self.Drug" Multiplicity="1" />
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug">
+              <PropertyRef Name="drug_Code" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="drug_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrder_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplier_Code" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="supplier_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrder_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="Ordered_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_PurchaseOrder">
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseOrder">
+              <PropertyRef Name="po_Code" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="po_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplier_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Supplier">
+              <PropertyRef Name="created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trade_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Trade" Type="Self.Trade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Trade">
+              <PropertyRef Name="created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Drug">
+          <End Role="Drug" Type="Self.Drug" Multiplicity="1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug">
+              <PropertyRef Name="drug_Code" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="drug_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="sold_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VCRIModelStoreContainer">
+          <EntitySet Name="Dosage" EntityType="Self.Dosage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drug" EntityType="Self.Drug" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Formulation" EntityType="Self.Formulation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trade" EntityType="Self.Trade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ULogin" EntityType="Self.ULogin" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Dosage_ULogin" Association="Self.FK_Dosage_ULogin">
+            <End Role="ULogin" EntitySet="ULogin" />
+            <End Role="Dosage" EntitySet="Dosage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Dosage" Association="Self.FK_Drug_Dosage">
+            <End Role="Dosage" EntitySet="Dosage" />
+            <End Role="Drug" EntitySet="Drug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Formulation" Association="Self.FK_Drug_Formulation">
+            <End Role="Formulation" EntitySet="Formulation" />
+            <End Role="Drug" EntitySet="Drug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Trade" Association="Self.FK_Drug_Trade">
+            <End Role="Trade" EntitySet="Trade" />
+            <End Role="Drug" EntitySet="Drug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_ULogin" Association="Self.FK_Drug_ULogin">
+            <End Role="ULogin" EntitySet="ULogin" />
+            <End Role="Drug" EntitySet="Drug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Formulation_ULogin" Association="Self.FK_Formulation_ULogin">
+            <End Role="ULogin" EntitySet="ULogin" />
+            <End Role="Formulation" EntitySet="Formulation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrder_Drug" Association="Self.FK_PurchaseOrder_Drug">
+            <End Role="Drug" EntitySet="Drug" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrder_Supplier" Association="Self.FK_PurchaseOrder_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrder_ULogin" Association="Self.FK_PurchaseOrder_ULogin">
+            <End Role="ULogin" EntitySet="ULogin" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_PurchaseOrder" Association="Self.FK_Stock_PurchaseOrder">
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_ULogin" Association="Self.FK_Stock_ULogin">
+            <End Role="ULogin" EntitySet="ULogin" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplier_ULogin" Association="Self.FK_Supplier_ULogin">
+            <End Role="ULogin" EntitySet="ULogin" />
+            <End Role="Supplier" EntitySet="Supplier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trade_ULogin" Association="Self.FK_Trade_ULogin">
+            <End Role="ULogin" EntitySet="ULogin" />
+            <End Role="Trade" EntitySet="Trade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Drug" Association="Self.FK_Transaction_Drug">
+            <End Role="Drug" EntitySet="Drug" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_ULogin" Association="Self.FK_Transaction_ULogin">
+            <End Role="ULogin" EntitySet="ULogin" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VCRIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Dosage">
+          <Key>
+            <PropertyRef Name="dosage_Code" />
+          </Key>
+          <Property Name="dosage_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dosage_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="created_By" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ULogin" Relationship="Self.FK_Dosage_ULogin" FromRole="Dosage" ToRole="ULogin" />
+          <NavigationProperty Name="Drugs" Relationship="Self.FK_Drug_Dosage" FromRole="Dosage" ToRole="Drug" />
+        </EntityType>
+        <EntityType Name="Drug">
+          <Key>
+            <PropertyRef Name="drug_Code" />
+          </Key>
+          <Property Name="drug_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="drug_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="trade_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dosage_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="formulation_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date_Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Created_By" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Dosage" Relationship="Self.FK_Drug_Dosage" FromRole="Drug" ToRole="Dosage" />
+          <NavigationProperty Name="Formulation" Relationship="Self.FK_Drug_Formulation" FromRole="Drug" ToRole="Formulation" />
+          <NavigationProperty Name="Trade" Relationship="Self.FK_Drug_Trade" FromRole="Drug" ToRole="Trade" />
+          <NavigationProperty Name="ULogin" Relationship="Self.FK_Drug_ULogin" FromRole="Drug" ToRole="ULogin" />
+          <NavigationProperty Name="PurchaseOrders" Relationship="Self.FK_PurchaseOrder_Drug" FromRole="Drug" ToRole="PurchaseOrder" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_Drug" FromRole="Drug" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Formulation">
+          <Key>
+            <PropertyRef Name="formulation_code" />
+          </Key>
+          <Property Name="formulation_code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="formulation_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="shortName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="created_By" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date_Created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Drugs" Relationship="Self.FK_Drug_Formulation" FromRole="Formulation" ToRole="Drug" />
+          <NavigationProperty Name="ULogin" Relationship="Self.FK_Formulation_ULogin" FromRole="Formulation" ToRole="ULogin" />
+        </EntityType>
+        <EntityType Name="PurchaseOrder">
+          <Key>
+            <PropertyRef Name="po_Code" />
+          </Key>
+          <Property Name="po_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="po_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="drug_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="supplier_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="po_Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Ordered_By" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date_Created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Drug" Relationship="Self.FK_PurchaseOrder_Drug" FromRole="PurchaseOrder" ToRole="Drug" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_PurchaseOrder_Supplier" FromRole="PurchaseOrder" ToRole="Supplier" />
+          <NavigationProperty Name="ULogin" Relationship="Self.FK_PurchaseOrder_ULogin" FromRole="PurchaseOrder" ToRole="ULogin" />
+          <NavigationProperty Name="Stocks" Relationship="Self.FK_Stock_PurchaseOrder" FromRole="PurchaseOrder" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="stock_Code" />
+          </Key>
+          <Property Name="stock_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="stock_ReceivedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="stock_ReceivedQuantity" Type="Int32" Nullable="false" />
+          <Property Name="po_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="batchCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="expiry_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="stock_BalanceQuantity" Type="Int32" Nullable="false" />
+          <Property Name="created_By" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date_Created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PurchaseOrder" Relationship="Self.FK_Stock_PurchaseOrder" FromRole="Stock" ToRole="PurchaseOrder" />
+          <NavigationProperty Name="ULogin" Relationship="Self.FK_Stock_ULogin" FromRole="Stock" ToRole="ULogin" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplier_Code" />
+          </Key>
+          <Property Name="supplier_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="supplier_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="created_By" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date_Created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PurchaseOrders" Relationship="Self.FK_PurchaseOrder_Supplier" FromRole="Supplier" ToRole="PurchaseOrder" />
+          <NavigationProperty Name="ULogin" Relationship="Self.FK_Supplier_ULogin" FromRole="Supplier" ToRole="ULogin" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Trade">
+          <Key>
+            <PropertyRef Name="trade_Code" />
+          </Key>
+          <Property Name="trade_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="trade_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="created_By" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Drugs" Relationship="Self.FK_Drug_Trade" FromRole="Trade" ToRole="Drug" />
+          <NavigationProperty Name="ULogin" Relationship="Self.FK_Trade_ULogin" FromRole="Trade" ToRole="ULogin" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="transaction_Code" />
+          </Key>
+          <Property Name="transaction_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="drug_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="drug_Quantity" Type="Int32" Nullable="false" />
+          <Property Name="sold_By" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sold_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BuyerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Drug" Relationship="Self.FK_Transaction_Drug" FromRole="Transaction" ToRole="Drug" />
+          <NavigationProperty Name="ULogin" Relationship="Self.FK_Transaction_ULogin" FromRole="Transaction" ToRole="ULogin" />
+        </EntityType>
+        <EntityType Name="ULogin">
+          <Key>
+            <PropertyRef Name="user_ID" />
+          </Key>
+          <Property Name="user_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_Pwd" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="date_Created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Dosages" Relationship="Self.FK_Dosage_ULogin" FromRole="ULogin" ToRole="Dosage" />
+          <NavigationProperty Name="Drugs" Relationship="Self.FK_Drug_ULogin" FromRole="ULogin" ToRole="Drug" />
+          <NavigationProperty Name="Formulations" Relationship="Self.FK_Formulation_ULogin" FromRole="ULogin" ToRole="Formulation" />
+          <NavigationProperty Name="PurchaseOrders" Relationship="Self.FK_PurchaseOrder_ULogin" FromRole="ULogin" ToRole="PurchaseOrder" />
+          <NavigationProperty Name="Stocks" Relationship="Self.FK_Stock_ULogin" FromRole="ULogin" ToRole="Stock" />
+          <NavigationProperty Name="Suppliers" Relationship="Self.FK_Supplier_ULogin" FromRole="ULogin" ToRole="Supplier" />
+          <NavigationProperty Name="Trades" Relationship="Self.FK_Trade_ULogin" FromRole="ULogin" ToRole="Trade" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK_Transaction_ULogin" FromRole="ULogin" ToRole="Transaction" />
+          <Property Name="SNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Dosage_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Dosage" Type="Self.Dosage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Dosage">
+              <PropertyRef Name="created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Dosage">
+          <End Role="Dosage" Type="Self.Dosage" Multiplicity="1" />
+          <End Role="Drug" Type="Self.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dosage">
+              <PropertyRef Name="dosage_Code" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="dosage_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Formulation">
+          <End Role="Formulation" Type="Self.Formulation" Multiplicity="1" />
+          <End Role="Drug" Type="Self.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Formulation">
+              <PropertyRef Name="formulation_code" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="formulation_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_Trade">
+          <End Role="Trade" Type="Self.Trade" Multiplicity="1" />
+          <End Role="Drug" Type="Self.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trade">
+              <PropertyRef Name="trade_Code" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="trade_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Drug_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Drug" Type="Self.Drug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Drug">
+              <PropertyRef Name="Created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrder_Drug">
+          <End Role="Drug" Type="Self.Drug" Multiplicity="1" />
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug">
+              <PropertyRef Name="drug_Code" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="drug_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Drug">
+          <End Role="Drug" Type="Self.Drug" Multiplicity="1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drug">
+              <PropertyRef Name="drug_Code" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="drug_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Formulation_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Formulation" Type="Self.Formulation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Formulation">
+              <PropertyRef Name="created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrder_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplier_Code" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="supplier_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrder_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="Ordered_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_PurchaseOrder">
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseOrder">
+              <PropertyRef Name="po_Code" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="po_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supplier_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Supplier">
+              <PropertyRef Name="created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trade_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Trade" Type="Self.Trade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Trade">
+              <PropertyRef Name="created_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_ULogin">
+          <End Role="ULogin" Type="Self.ULogin" Multiplicity="1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ULogin">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="sold_By" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VCRIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dosages" EntityType="Self.Dosage" />
+          <EntitySet Name="Drugs" EntityType="Self.Drug" />
+          <EntitySet Name="Formulations" EntityType="Self.Formulation" />
+          <EntitySet Name="PurchaseOrders" EntityType="Self.PurchaseOrder" />
+          <EntitySet Name="Stocks" EntityType="Self.Stock" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Trades" EntityType="Self.Trade" />
+          <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+          <EntitySet Name="ULogins" EntityType="Self.ULogin" />
+          <AssociationSet Name="FK_Dosage_ULogin" Association="Self.FK_Dosage_ULogin">
+            <End Role="ULogin" EntitySet="ULogins" />
+            <End Role="Dosage" EntitySet="Dosages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Dosage" Association="Self.FK_Drug_Dosage">
+            <End Role="Dosage" EntitySet="Dosages" />
+            <End Role="Drug" EntitySet="Drugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Formulation" Association="Self.FK_Drug_Formulation">
+            <End Role="Formulation" EntitySet="Formulations" />
+            <End Role="Drug" EntitySet="Drugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_Trade" Association="Self.FK_Drug_Trade">
+            <End Role="Trade" EntitySet="Trades" />
+            <End Role="Drug" EntitySet="Drugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Drug_ULogin" Association="Self.FK_Drug_ULogin">
+            <End Role="ULogin" EntitySet="ULogins" />
+            <End Role="Drug" EntitySet="Drugs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrder_Drug" Association="Self.FK_PurchaseOrder_Drug">
+            <End Role="Drug" EntitySet="Drugs" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Drug" Association="Self.FK_Transaction_Drug">
+            <End Role="Drug" EntitySet="Drugs" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Formulation_ULogin" Association="Self.FK_Formulation_ULogin">
+            <End Role="ULogin" EntitySet="ULogins" />
+            <End Role="Formulation" EntitySet="Formulations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrder_Supplier" Association="Self.FK_PurchaseOrder_Supplier">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrder_ULogin" Association="Self.FK_PurchaseOrder_ULogin">
+            <End Role="ULogin" EntitySet="ULogins" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_PurchaseOrder" Association="Self.FK_Stock_PurchaseOrder">
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_ULogin" Association="Self.FK_Stock_ULogin">
+            <End Role="ULogin" EntitySet="ULogins" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supplier_ULogin" Association="Self.FK_Supplier_ULogin">
+            <End Role="ULogin" EntitySet="ULogins" />
+            <End Role="Supplier" EntitySet="Suppliers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trade_ULogin" Association="Self.FK_Trade_ULogin">
+            <End Role="ULogin" EntitySet="ULogins" />
+            <End Role="Trade" EntitySet="Trades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_ULogin" Association="Self.FK_Transaction_ULogin">
+            <End Role="ULogin" EntitySet="ULogins" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VCRIModelStoreContainer" CdmEntityContainer="VCRIEntities">
+          <EntitySetMapping Name="Dosages">
+            <EntityTypeMapping TypeName="VCRIModel.Dosage">
+              <MappingFragment StoreEntitySet="Dosage">
+                <ScalarProperty Name="dosage_Code" ColumnName="dosage_Code" />
+                <ScalarProperty Name="dosage_Description" ColumnName="dosage_Description" />
+                <ScalarProperty Name="created_By" ColumnName="created_By" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drugs">
+            <EntityTypeMapping TypeName="VCRIModel.Drug">
+              <MappingFragment StoreEntitySet="Drug">
+                <ScalarProperty Name="drug_Code" ColumnName="drug_Code" />
+                <ScalarProperty Name="drug_Name" ColumnName="drug_Name" />
+                <ScalarProperty Name="trade_Code" ColumnName="trade_Code" />
+                <ScalarProperty Name="dosage_Code" ColumnName="dosage_Code" />
+                <ScalarProperty Name="formulation_Code" ColumnName="formulation_Code" />
+                <ScalarProperty Name="date_Created" ColumnName="date_Created" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Formulations">
+            <EntityTypeMapping TypeName="VCRIModel.Formulation">
+              <MappingFragment StoreEntitySet="Formulation">
+                <ScalarProperty Name="formulation_code" ColumnName="formulation_code" />
+                <ScalarProperty Name="formulation_Name" ColumnName="formulation_Name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="shortName" ColumnName="shortName" />
+                <ScalarProperty Name="created_By" ColumnName="created_By" />
+                <ScalarProperty Name="date_Created" ColumnName="date_Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseOrders">
+            <EntityTypeMapping TypeName="VCRIModel.PurchaseOrder">
+              <MappingFragment StoreEntitySet="PurchaseOrder">
+                <ScalarProperty Name="po_Code" ColumnName="po_Code" />
+                <ScalarProperty Name="po_Date" ColumnName="po_Date" />
+                <ScalarProperty Name="drug_Code" ColumnName="drug_Code" />
+                <ScalarProperty Name="supplier_Code" ColumnName="supplier_Code" />
+                <ScalarProperty Name="po_Quantity" ColumnName="po_Quantity" />
+                <ScalarProperty Name="Ordered_By" ColumnName="Ordered_By" />
+                <ScalarProperty Name="date_Created" ColumnName="date_Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="VCRIModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="stock_Code" ColumnName="stock_Code" />
+                <ScalarProperty Name="stock_ReceivedDate" ColumnName="stock_ReceivedDate" />
+                <ScalarProperty Name="stock_ReceivedQuantity" ColumnName="stock_ReceivedQuantity" />
+                <ScalarProperty Name="po_Code" ColumnName="po_Code" />
+                <ScalarProperty Name="batchCode" ColumnName="batchCode" />
+                <ScalarProperty Name="expiry_Date" ColumnName="expiry_Date" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="stock_BalanceQuantity" ColumnName="stock_BalanceQuantity" />
+                <ScalarProperty Name="created_By" ColumnName="created_By" />
+                <ScalarProperty Name="date_Created" ColumnName="date_Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="VCRIModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="supplier_Code" ColumnName="supplier_Code" />
+                <ScalarProperty Name="supplier_Name" ColumnName="supplier_Name" />
+                <ScalarProperty Name="created_By" ColumnName="created_By" />
+                <ScalarProperty Name="date_Created" ColumnName="date_Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="VCRIModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trades">
+            <EntityTypeMapping TypeName="VCRIModel.Trade">
+              <MappingFragment StoreEntitySet="Trade">
+                <ScalarProperty Name="trade_Code" ColumnName="trade_Code" />
+                <ScalarProperty Name="trade_Name" ColumnName="trade_Name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="date_Created" ColumnName="date_Created" />
+                <ScalarProperty Name="created_By" ColumnName="created_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="VCRIModel.Transaction">
+              <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="transaction_Code" ColumnName="transaction_Code" />
+                <ScalarProperty Name="drug_Code" ColumnName="drug_Code" />
+                <ScalarProperty Name="drug_Quantity" ColumnName="drug_Quantity" />
+                <ScalarProperty Name="sold_By" ColumnName="sold_By" />
+                <ScalarProperty Name="sold_Date" ColumnName="sold_Date" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="BuyerName" ColumnName="BuyerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ULogins">
+            <EntityTypeMapping TypeName="VCRIModel.ULogin">
+              <MappingFragment StoreEntitySet="ULogin">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SNo" ColumnName="Sno" />
+                <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+                <ScalarProperty Name="user_Name" ColumnName="user_Name" />
+                <ScalarProperty Name="user_Pwd" ColumnName="user_Pwd" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="date_Created" ColumnName="date_Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

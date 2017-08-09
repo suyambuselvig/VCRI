@@ -9,20 +9,20 @@ namespace VCRI.Controllers
 {
     public class FormulationController : Controller
     {
-        VCR_DAL.DataAccessLayer dal = new VCR_DAL.DataAccessLayer();
+        VCRI_DAL.DataAccessLayer dal = new VCRI_DAL.DataAccessLayer();
         VCRI.Models.Formulation formulation = new Models.Formulation();
-        VCR_DAL.Formulation formulation_data = new VCR_DAL.Formulation();
+        VCRI_DAL.Formulation formulation_data = new VCRI_DAL.Formulation();
 
         //public ActionResult Index()
         //{
-        //    Mapper.CreateMap<VCR_DAL.Formulation, Models.Formulation>().ForMember(dos => dos.uname, map => map.MapFrom(name => name.Login.username));
-        //    Mapper.CreateMap<Models.Formulation, VCR_DAL.Formulation>();
-        //    List<VCR_DAL.Formulation> list_formulation = dal.fetch_Formulations();
+        //    Mapper.CreateMap<VCRI_DAL.Formulation, Models.Formulation>().ForMember(dos => dos.uname, map => map.MapFrom(name => name.Login.username));
+        //    Mapper.CreateMap<Models.Formulation, VCRI_DAL.Formulation>();
+        //    List<VCRI_DAL.Formulation> list_formulation = dal.fetch_Formulations();
         //    var list_formulation_Model = new List<Models.Formulation>();
         //    int i = 0;
-        //    foreach (VCR_DAL.Formulation tr in list_formulation)
+        //    foreach (VCRI_DAL.Formulation tr in list_formulation)
         //    {
-        //        list_formulation_Model.Add(Mapper.Map<VCR_DAL.Formulation, Models.Formulation>(tr));
+        //        list_formulation_Model.Add(Mapper.Map<VCRI_DAL.Formulation, Models.Formulation>(tr));
         //        i++;
         //    }
         //    return View(list_formulation_Model);
@@ -44,15 +44,15 @@ namespace VCRI.Controllers
         //{
         //    try
         //    {
-        //        VCRI.Models.Login formula_User = (VCRI.Models.Login)Session["user_d"];
+        //        VCRI.Models.Login formula_User = (VCRI.Models.Login)Session["user_ID"];
         //        formulation.Formulation_code= "";
         //        formulation.Formulation_Name = collection["Formulation_Name"];
         //        formulation.Created_By= formula_User.userid;
         //        formulation.Created_Datetime = System.DateTime.Now;
         //        formulation.Description = collection["Description"];
         //        formulation.ShortName = collection["ShortName"];
-        //        Mapper.CreateMap<Models.Formulation, VCR_DAL.Formulation>();
-        //        formulation_data = Mapper.Map<Models.Formulation, VCR_DAL.Formulation>(formulation);
+        //        Mapper.CreateMap<Models.Formulation, VCRI_DAL.Formulation>();
+        //        formulation_data = Mapper.Map<Models.Formulation, VCRI_DAL.Formulation>(formulation);
         //        bool status = dal.Create_Formulation(formulation_data);
         //        if (status)
         //        {
@@ -76,9 +76,9 @@ namespace VCRI.Controllers
 
         //public ActionResult Edit(string formulaid)
         //{
-        //    Mapper.CreateMap<VCR_DAL.Formulation, Models.Formulation>();
+        //    Mapper.CreateMap<VCRI_DAL.Formulation, Models.Formulation>();
         //    formulation_data = dal.get_formula_details(formulaid);
-        //    formulation = Mapper.Map<VCR_DAL.Formulation, Models.Formulation>(formulation_data);
+        //    formulation = Mapper.Map<VCRI_DAL.Formulation, Models.Formulation>(formulation_data);
         //    return View(formulation);
             
         //}
@@ -92,9 +92,9 @@ namespace VCRI.Controllers
         //    try
         //    {
         //        string fid = f.Formulation_code;
-        //        Mapper.CreateMap<Models.Formulation, VCR_DAL.Formulation>();
+        //        Mapper.CreateMap<Models.Formulation, VCRI_DAL.Formulation>();
 
-        //        formulation_data = Mapper.Map<Models.Formulation, VCR_DAL.Formulation>(f);
+        //        formulation_data = Mapper.Map<Models.Formulation, VCRI_DAL.Formulation>(f);
 
         //        bool status = dal.update_formula_details(formulation_data, fid);
         //        if (status)

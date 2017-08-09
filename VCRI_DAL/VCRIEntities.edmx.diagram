@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0c8e9aa7f49646abb1f5ff625e5c5965" Name="Diagram1">
+        <EntityTypeShape EntityType="VCRIModel.Dosage" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIModel.Drug" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIModel.Formulation" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIModel.PurchaseOrder" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIModel.Stock" Width="1.5" PointX="12.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIModel.Supplier" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIModel.Trade" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIModel.Transaction" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VCRIModel.ULogin" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="VCRIModel.FK_Dosage_ULogin" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_Drug_Dosage" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_Drug_Formulation" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_Drug_Trade" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_Drug_ULogin" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_PurchaseOrder_Drug" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_Transaction_Drug" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_Formulation_ULogin" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_PurchaseOrder_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_PurchaseOrder_ULogin" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_Stock_PurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_Stock_ULogin" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_Supplier_ULogin" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_Trade_ULogin" ManuallyRouted="false" />
+        <AssociationConnector Association="VCRIModel.FK_Transaction_ULogin" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
