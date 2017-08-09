@@ -26,7 +26,12 @@ columns.Add().Sanitized(false).Encoded(false).RenderValueAs(o => Html.ActionLink
                      
                     }).WithPaging(3).Sortable(true)
     </div>
-     <button value="createuser" name="Create New User" onclick="location.href='@Url.Action("Create","Login")'" >Create User</button>
+    <div>
+        <button value="createuser" name="Create New User" onclick="location.href='@Url.Action("Create","Login")'">Create User</button>
+
+
+        <button value="home" name="home" onclick="location.href='@Url.Action("Index","Employee")'">Back to Home</button>
+    </div>
 </body>
 </html>
 
