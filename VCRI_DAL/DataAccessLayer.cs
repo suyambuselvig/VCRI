@@ -64,7 +64,7 @@ namespace VCRI_DAL
         {
             try
             {
-                t.trade_Code = fetch_PK("Trade");
+               // t.trade_Code = fetch_PK("Trade");
                 dbContext.Trades.Add(t);
                 dbContext.SaveChanges();
                 return true;

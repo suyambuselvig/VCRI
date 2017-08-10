@@ -11,43 +11,45 @@
     <fieldset>
         <legend>Trade</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Trade_Code)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Trade_Code, new { @readonly=true})
-         
+        <div class="form-group">
+                   @Html.LabelFor(model => model.trade_Code, new { @class = "col-md-2 control-label" })
+            <div  class="col-md-10">
+                @Html.TextBoxFor(model => model.trade_Code,  new { @readonly = true, @class = "form-control" })
+            </div>
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Trade_Name)
+        <div class="form-group">
+            @Html.LabelFor(model => model.trade_Name, new { @class = "col-md-2 control-label" })
+            <div  class="col-md-10">
+                @Html.EditorFor(model => model.trade_Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.trade_Name, "", new { @class = "text-danger" })
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Trade_Name)
-            @Html.ValidationMessageFor(model => model.Trade_Name)
+        <div class="form-group">
+            @Html.LabelFor(model => model.created_By, new { @class = "col-md-2 control-label" })
+            <div  class="col-md-10">
+                @Html.TextBoxFor(model => model.created_By, new { @readonly = true })
+                @Html.ValidationMessageFor(model => model.created_By)
+            </div>
         </div>
-         <div class="editor-label">
-            @Html.LabelFor(model => model.Created_By)
+        <div class="form-group">
+            @Html.LabelFor(model => model.date_Created,  new { @class = "col-md-2 control-label" })
+            <div  class="col-md-10">
+                @Html.TextBoxFor(model => model.date_Created, new { @readonly = true })
+                @Html.ValidationMessageFor(model => model.date_Created)
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Created_By, new { @readonly=true})
-            @Html.ValidationMessageFor(model => model.Created_By)
-        </div>
-         <div class="editor-label">
-            @Html.LabelFor(model => model.Created_datetime)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Created_datetime, new { @readonly=true})
-            @Html.ValidationMessageFor(model => model.Created_datetime)
-        </div>
-         <div class="editor-field">
-            @Html.EditorFor(model => model.Description)
-            @Html.ValidationMessageFor(model => model.Description)
-        </div>
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
+        <div class="form-group">
+            @Html.LabelFor(model => model.description, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.description)
+            </div>
+        </div>     
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+</fieldset>
 }
 
 <div>

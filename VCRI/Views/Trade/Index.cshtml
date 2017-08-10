@@ -27,13 +27,13 @@
         @Html.Grid(Model).Columns(columns =>
    {
 
-       columns.Add(c => c.Trade_Code).Titled("Trade Code");
-       columns.Add(c => c.Trade_Name).Titled("Trade Name").Filterable(true);
-       columns.Add(c => c.Description).Titled("Description");
-       columns.Add(c => c.uname).Titled("Created user");
-       columns.Add(c => c.Created_datetime).Titled("Date time of Creation").Format("{0:dd/MM/yyyy hh:mm tt}");
-       columns.Add().Sanitized(false).Encoded(false).RenderValueAs(o => Html.ActionLink("Delete", "Delete", "Trade", new { tradeid = o.Trade_Code.Trim() }, new { onclick = "return confirm('Are you sure?');" }).ToHtmlString());
-       columns.Add().Sanitized(false).Encoded(false).RenderValueAs(o => Html.ActionLink("Edit", "Edit", "Trade", new { tradeid = o.Trade_Code.Trim() }, new { }).ToHtmlString());
+       columns.Add(c => c.trade_Code).Titled("Trade Code");
+       columns.Add(c => c.trade_Name).Titled("Trade Name").Filterable(true);
+       columns.Add(c => c.description).Titled("Description");
+       columns.Add(c => c.uname).Titled("Created By.");
+       columns.Add(c => c.date_Created).Titled("Created Date").Format("{0:dd/MM/yyyy hh:mm}");
+       columns.Add().Sanitized(false).Encoded(false).RenderValueAs(o => Html.ActionLink("Delete", "Delete", "Trade", new { tradeid = o.trade_Code.Trim() }, new { onclick = "return confirm('Are you sure?');" }).ToHtmlString());
+       columns.Add().Sanitized(false).Encoded(false).RenderValueAs(o => Html.ActionLink("Edit", "Edit", "Trade", new { tradeid = o.trade_Code.Trim() }, new { }).ToHtmlString());
 
    }).WithPaging(3).Sortable(true)
     </div>

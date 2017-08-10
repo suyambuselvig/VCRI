@@ -15,13 +15,28 @@
                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <hr />
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Trade_Name, new { @class = "col-md-2 control-label" })
+                    @Html.LabelFor(m => m.trade_Code, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Trade_Name, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Trade_Name, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.trade_Code, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.trade_Code, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                            
+                <div class="form-group">
+                    @Html.LabelFor(m => m.trade_Name, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.trade_Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.trade_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.description, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+              
                 <div class="form-group">
                     <div  class="col-md-offset-2 col-md-10">
                         <input id="create" type="submit" value="Create Trade" class="btn btn-default" />
